@@ -11,6 +11,7 @@ public class RomanNumeralTest {
     @CsvSource({
             "1, I",
             "2, II",
+            "4, IV",
     })
     void convertArabicToRomanNumber(int arabicNumber, String romanNumberString) {
         RomanNumber romanNumber = new RomanNumber(arabicNumber);
