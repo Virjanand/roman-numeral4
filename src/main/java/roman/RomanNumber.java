@@ -12,6 +12,9 @@ public class RomanNumber {
         if (arabicNumber == 1) {
             result += "I";
         }
+        if (arabicNumber == 2) {
+            result += "II";
+        }
         return result;
     }
 }
