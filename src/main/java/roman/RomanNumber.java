@@ -9,6 +9,7 @@ public class RomanNumber {
 
     public String toRoman() {
         String result = "";
+        result += extractRomanFromArabicNumber(5, "V");
         result += extractRomanFromArabicNumber(4, "IV");
         result += extractRomanFromArabicNumber(1, "I");
         return result;
