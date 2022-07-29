@@ -16,9 +16,7 @@ public class RomanNumber {
     }
 
     public String toRoman() {
-        return arabicToRomanMap.entrySet().stream()
-                .map(this::extractRomanFromArabicNumber)
-                .collect(Collectors.joining());
+        return arabicToRomanMap.entrySet().stream().map(this::extractRomanFromArabicNumber).collect(Collectors.joining());
     }
 
     private String extractRomanFromArabicNumber(Map.Entry<Integer, String> entry) {
@@ -28,7 +26,7 @@ public class RomanNumber {
         if (arabicNumber >= 1) {
             String romanNumberString = entry.getValue();
             result += romanNumberString.repeat(timesNumberFitsInArabicNumber);
-            arabicNumber -= arabicNumber * timesNumberFitsInArabicNumber;
+            arabicNumber -= number * timesNumberFitsInArabicNumber;
         }
         return result;
     }
