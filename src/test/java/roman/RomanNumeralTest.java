@@ -15,6 +15,7 @@ public class RomanNumeralTest {
             "5, V",
             "6, VI",
             "9, IX",
+            "10, X",
     })
     void convertArabicToRomanNumber(int arabicNumber, String romanNumberString) {
         RomanNumber romanNumber = new RomanNumber(arabicNumber);
