@@ -26,18 +26,20 @@ public class RomanNumber {
     }
 
     public String toRoman() {
-        return arabicToRomanMap.entrySet().stream().map(entry -> extractRomanFromArabicNumber(entry, calculateTimesNumberFitsInArabicNumber(entry.getKey()))).collect(Collectors.joining());
+        return arabicToRomanMap.entrySet().stream().map(entry -> {
+            int times = calculateTimesNumberFitsInArabicNumber(entry.getKey());
+            String result = repeatRomanNumber(entry.getValue(), times);
+            removeFromArabicNumber(entry.getKey(), times);
+            return result;
+        }).collect(Collectors.joining());
     }
 
-    private String extractRomanFromArabicNumber(Map.Entry<Integer, String> entry, int times) {
-        Integer number = entry.getKey();
-        String result = "";
-        if (arabicNumber >= 1) {
-            String romanNumberString = entry.getValue();
-            result += romanNumberString.repeat(times);
-            arabicNumber -= number * times;
-        }
-        return result;
+    private String repeatRomanNumber(String romanNumber, int times) {
+        return "" + romanNumber.repeat(times);
+    }
+
+    private void removeFromArabicNumber(Integer number, int times) {
+        arabicNumber -= number * times;
     }
 
     private int calculateTimesNumberFitsInArabicNumber(Integer number) {
