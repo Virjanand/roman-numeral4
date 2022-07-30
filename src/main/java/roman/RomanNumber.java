@@ -1,11 +1,12 @@
 package roman;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class RomanNumber {
     private final Map<Integer, String> arabicToRomanMap;
-    private int arabicNumber;
+    private final int arabicNumber;
 
     public RomanNumber(int arabicNumber) {
         this.arabicNumber = arabicNumber;
@@ -26,10 +27,11 @@ public class RomanNumber {
     }
 
     public String toRoman() {
+        AtomicInteger remainingNumber = new AtomicInteger(arabicNumber);
         return arabicToRomanMap.entrySet().stream().map(entry -> {
-            int times = calculateTimesNumberFitsInArabicNumber(entry.getKey());
+            int times = calculateTimesNumberFitsInRemainingNumber(entry.getKey(), remainingNumber.get());
             String result = repeatRomanNumber(entry.getValue(), times);
-            removeFromArabicNumber(entry.getKey(), times);
+            remainingNumber.set(removeFromRemainingNumber(entry.getKey(), times, remainingNumber.get()));
             return result;
         }).collect(Collectors.joining());
     }
@@ -38,11 +40,11 @@ public class RomanNumber {
         return "" + romanNumber.repeat(times);
     }
 
-    private void removeFromArabicNumber(Integer number, int times) {
-        arabicNumber -= number * times;
+    private int removeFromRemainingNumber(Integer number, int times, int remainingNumber) {
+        return remainingNumber - number * times;
     }
 
-    private int calculateTimesNumberFitsInArabicNumber(Integer number) {
-        return arabicNumber / number;
+    private int calculateTimesNumberFitsInRemainingNumber(Integer number, int remainingNumber) {
+        return remainingNumber / number;
     }
 }
