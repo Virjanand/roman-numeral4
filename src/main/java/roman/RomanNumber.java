@@ -28,12 +28,16 @@ public class RomanNumber {
 
     public String toRoman() {
         AtomicInteger remainingNumber = new AtomicInteger(arabicNumber);
-        return arabicToRomanMap.entrySet().stream().map(entry -> {
-            int times = calculateTimesNumberFitsInRemainingNumber(entry.getKey(), remainingNumber.get());
-            String result = repeatRomanNumber(entry.getValue(), times);
-            remainingNumber.set(removeFromRemainingNumber(entry.getKey(), times, remainingNumber.get()));
-            return result;
-        }).collect(Collectors.joining());
+        return arabicToRomanMap.entrySet().stream()
+                .map(entry -> extractRomanFromRemainingNumber(remainingNumber, entry))
+                .collect(Collectors.joining());
+    }
+
+    private String extractRomanFromRemainingNumber(AtomicInteger remainingNumber, Map.Entry<Integer, String> entry) {
+        int times = calculateTimesNumberFitsInRemainingNumber(entry.getKey(), remainingNumber.get());
+        String result = repeatRomanNumber(entry.getValue(), times);
+        remainingNumber.set(removeFromRemainingNumber(entry.getKey(), times, remainingNumber.get()));
+        return result;
     }
 
     private String repeatRomanNumber(String romanNumber, int times) {
