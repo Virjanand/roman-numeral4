@@ -10,6 +10,7 @@ public class RomanNumber {
     public RomanNumber(int arabicNumber) {
         this.arabicNumber = arabicNumber;
         arabicToRomanMap = new LinkedHashMap<>();
+        arabicToRomanMap.put(1000, "M");
         arabicToRomanMap.put(900, "CM");
         arabicToRomanMap.put(500, "D");
         arabicToRomanMap.put(400, "CD");

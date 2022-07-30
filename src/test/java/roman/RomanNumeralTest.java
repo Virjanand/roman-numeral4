@@ -23,6 +23,7 @@ public class RomanNumeralTest {
             "400, CD",
             "500, D",
             "900, CM",
+            "1000, M",
     })
     void convertArabicToRomanNumber(int arabicNumber, String romanNumberString) {
         RomanNumber romanNumber = new RomanNumber(arabicNumber);
