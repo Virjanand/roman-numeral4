@@ -21,6 +21,10 @@ class RomanNumber implements Comparable<RomanNumber> {
         return romanNumber;
     }
 
+    public String repeatRomanNumber(int times) {
+        return "" + this.romanNumber.repeat(times);
+    }
+
     @Override
     public int compareTo(RomanNumber other) {
         return Integer.compare(this.arabicNumber, other.getArabicNumber());
@@ -56,15 +60,11 @@ public class RomanNumberConverter {
                 .collect(Collectors.joining());
     }
 
-    private String extractRomanFromRemainingNumber(AtomicInteger remainingNumber, RomanNumber entry) {
-        int times = calculateTimesNumberFitsInRemainingNumber(entry.getArabicNumber(), remainingNumber.get());
-        String result = repeatRomanNumber(entry.getRomanNumber(), times);
-        remainingNumber.set(removeFromRemainingNumber(entry.getArabicNumber(), times, remainingNumber.get()));
+    private String extractRomanFromRemainingNumber(AtomicInteger remainingNumber, RomanNumber romanNumber) {
+        int times = calculateTimesNumberFitsInRemainingNumber(romanNumber.getArabicNumber(), remainingNumber.get());
+        String result = romanNumber.repeatRomanNumber(times);
+        remainingNumber.set(removeFromRemainingNumber(romanNumber.getArabicNumber(), times, remainingNumber.get()));
         return result;
-    }
-
-    private String repeatRomanNumber(String romanNumber, int times) {
-        return "" + romanNumber.repeat(times);
     }
 
     private int removeFromRemainingNumber(Integer number, int times, int remainingNumber) {
