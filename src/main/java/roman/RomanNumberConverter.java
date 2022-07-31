@@ -17,15 +17,22 @@ class RomanNumber implements Comparable<RomanNumber> {
         return arabicNumber;
     }
 
-    public String getRomanNumber() {
-        return romanNumber;
+    public String extractRomanFromRemainingNumber(AtomicInteger remainingNumber) {
+        int times = calculateTimesNumberFitsInRemainingNumber(remainingNumber.get());
+        String result = repeatRomanNumber(times);
+        remainingNumber.set(removeFromRemainingNumber(remainingNumber.get(), times));
+        return result;
     }
 
-    public String repeatRomanNumber(int times) {
+    private int calculateTimesNumberFitsInRemainingNumber(int remainingNumber) {
+        return remainingNumber / this.arabicNumber;
+    }
+
+    private String repeatRomanNumber(int times) {
         return "" + this.romanNumber.repeat(times);
     }
 
-    public int removeFromRemainingNumber(int remainingNumber, int times) {
+    private int removeFromRemainingNumber(int remainingNumber, int times) {
         return remainingNumber - this.arabicNumber * times;
     }
 
@@ -60,18 +67,8 @@ public class RomanNumberConverter {
 
     public String toRoman() {
         AtomicInteger remainingNumber = new AtomicInteger(arabicNumber);
-        return romanNumbers.stream().sorted(Comparator.reverseOrder()).map(roman -> extractRomanFromRemainingNumber(remainingNumber, roman))
+        return romanNumbers.stream().sorted(Comparator.reverseOrder()).map(roman -> roman.extractRomanFromRemainingNumber(remainingNumber))
                 .collect(Collectors.joining());
     }
 
-    private String extractRomanFromRemainingNumber(AtomicInteger remainingNumber, RomanNumber romanNumber) {
-        int times = calculateTimesNumberFitsInRemainingNumber(romanNumber.getArabicNumber(), remainingNumber.get());
-        String result = romanNumber.repeatRomanNumber(times);
-        remainingNumber.set(romanNumber.removeFromRemainingNumber(remainingNumber.get(), times));
-        return result;
-    }
-
-    private int calculateTimesNumberFitsInRemainingNumber(Integer number, int remainingNumber) {
-        return remainingNumber / number;
-    }
 }
