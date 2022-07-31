@@ -27,7 +27,7 @@ public class RomanNumeralTest {
             "1984, MCMLXXXIV",
     })
     void convertArabicToRomanNumber(int arabicNumber, String romanNumberString) {
-        RomanNumber romanNumber = new RomanNumber(arabicNumber);
-        assertThat(romanNumber.toRoman()).isEqualTo(romanNumberString);
+        RomanNumberConverter romanNumberConverter = new RomanNumberConverter(arabicNumber);
+        assertThat(romanNumberConverter.toRoman()).isEqualTo(romanNumberString);
     }
 }
