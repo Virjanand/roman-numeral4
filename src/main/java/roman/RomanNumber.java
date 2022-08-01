@@ -16,21 +16,21 @@ public class RomanNumber implements Comparable<RomanNumber> {
     }
 
     public String extractRomanFromRemainingNumber(AtomicInteger remainingNumber) {
-        int times = calculateTimesNumberFitsInNumber(remainingNumber.get());
+        int times = timesInNumber(remainingNumber.get());
         String result = repeatRomanNumber(times);
         remainingNumber.set(remainderFromNumber(remainingNumber.get()));
         return result;
     }
 
-    private int calculateTimesNumberFitsInNumber(int number) {
+    public int timesInNumber(int number) {
         return number / this.arabicNumber;
     }
 
-    private String repeatRomanNumber(int times) {
+    public String repeatRomanNumber(int times) {
         return "" + this.romanNumber.repeat(times);
     }
 
-    private int remainderFromNumber(int number) {
+    public int remainderFromNumber(int number) {
         return number % this.arabicNumber;
     }
 
