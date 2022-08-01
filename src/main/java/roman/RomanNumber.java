@@ -14,19 +14,19 @@ public class RomanNumber implements Comparable<RomanNumber> {
     }
 
     public int timesInNumber(int number) {
-        return number / this.arabicNumber;
+        return number / arabicNumber;
     }
 
     public String repeatRomanNumber(int times) {
-        return "" + this.romanNumber.repeat(times);
+        return romanNumber.repeat(times);
     }
 
     public int remainderFromNumber(int number) {
-        return number % this.arabicNumber;
+        return number % arabicNumber;
     }
 
     @Override
     public int compareTo(RomanNumber other) {
-        return Integer.compare(this.arabicNumber, other.getArabicNumber());
+        return Integer.compare(arabicNumber, other.getArabicNumber());
     }
 }
