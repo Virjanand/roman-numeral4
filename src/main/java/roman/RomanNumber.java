@@ -1,7 +1,5 @@
 package roman;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class RomanNumber implements Comparable<RomanNumber> {
     private final int arabicNumber;
     private final String romanNumber;
@@ -11,15 +9,8 @@ public class RomanNumber implements Comparable<RomanNumber> {
         this.romanNumber = romanNumber;
     }
 
-    protected int getArabicNumber() {
+    private int getArabicNumber() {
         return arabicNumber;
-    }
-
-    public String extractRomanFromRemainingNumber(AtomicInteger remainingNumber) {
-        int times = timesInNumber(remainingNumber.get());
-        String result = repeatRomanNumber(times);
-        remainingNumber.set(remainderFromNumber(remainingNumber.get()));
-        return result;
     }
 
     public int timesInNumber(int number) {

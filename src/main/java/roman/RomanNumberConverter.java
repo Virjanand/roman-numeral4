@@ -29,7 +29,14 @@ public class RomanNumberConverter {
 
     public String toRoman() {
         AtomicInteger remainingNumber = new AtomicInteger(arabicNumber);
-        return romanNumbers.stream().sorted(Comparator.reverseOrder()).map(roman -> roman.extractRomanFromRemainingNumber(remainingNumber))
+        return romanNumbers.stream().sorted(Comparator.reverseOrder()).map(roman -> extractRomanFromRemainingNumber(remainingNumber, roman))
                 .collect(Collectors.joining());
+    }
+
+    private String extractRomanFromRemainingNumber(AtomicInteger remainingNumber, RomanNumber roman) {
+        int times = roman.timesInNumber(remainingNumber.get());
+        String result = roman.repeatRomanNumber(times);
+        remainingNumber.set(roman.remainderFromNumber(remainingNumber.get()));
+        return result;
     }
 }
