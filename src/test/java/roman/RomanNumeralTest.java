@@ -34,6 +34,7 @@ public class RomanNumeralTest {
     @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource({
             "I, 1",
+            "II, 2",
     })
     void convertRomanToArabicNumber(String romanNumberString, int arabicNumber) {
         RomanToArabicNumberConverter arabicToRomanNumberConverter = new RomanToArabicNumberConverter(romanNumberString);
