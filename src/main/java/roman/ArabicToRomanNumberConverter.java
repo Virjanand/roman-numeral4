@@ -4,11 +4,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class RomanNumberConverter {
+public class ArabicToRomanNumberConverter {
     private final int arabicNumber;
     private final List<RomanNumber> romanNumbers;
 
-    public RomanNumberConverter(int arabicNumber) {
+    public ArabicToRomanNumberConverter(int arabicNumber) {
         this.arabicNumber = arabicNumber;
 
         romanNumbers = new ArrayList<>();

@@ -27,7 +27,16 @@ public class RomanNumeralTest {
             "1984, MCMLXXXIV",
     })
     void convertArabicToRomanNumber(int arabicNumber, String romanNumberString) {
-        RomanNumberConverter romanNumberConverter = new RomanNumberConverter(arabicNumber);
-        assertThat(romanNumberConverter.toRoman()).isEqualTo(romanNumberString);
+        ArabicToRomanNumberConverter arabicToRomanNumberConverter = new ArabicToRomanNumberConverter(arabicNumber);
+        assertThat(arabicToRomanNumberConverter.toRoman()).isEqualTo(romanNumberString);
+    }
+
+    @ParameterizedTest(name = "{0} -> {1}")
+    @CsvSource({
+            "I, 1",
+    })
+    void convertRomanToArabicNumber(String romanNumberString, int arabicNumber) {
+        RomanToArabicNumberConverter arabicToRomanNumberConverter = new RomanToArabicNumberConverter(romanNumberString);
+        assertThat(arabicToRomanNumberConverter.toArabic()).isEqualTo(arabicNumber);
     }
 }
