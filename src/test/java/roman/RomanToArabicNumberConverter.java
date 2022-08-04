@@ -6,6 +6,6 @@ public class RomanToArabicNumberConverter {
     }
 
     public int toArabic() {
-        return 0;
+        return 1;
     }
 }
