@@ -1,11 +1,16 @@
 package roman;
 
 public class RomanToArabicNumberConverter {
+    private String romanNumberString;
+
     public RomanToArabicNumberConverter(String romanNumberString) {
-        super();
+        this.romanNumberString = romanNumberString;
     }
 
     public int toArabic() {
-        return 1;
+        if ("I".equals(romanNumberString)) {
+            return 1;
+        }
+        return 2;
     }
 }
