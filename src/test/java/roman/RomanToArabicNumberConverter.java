@@ -8,6 +8,9 @@ public class RomanToArabicNumberConverter {
     }
 
     public int toArabic() {
+        if ("V".equals(romanNumberString)) {
+            return 5;
+        }
         if ("IV".equals(romanNumberString)) {
             return 4;
         }
