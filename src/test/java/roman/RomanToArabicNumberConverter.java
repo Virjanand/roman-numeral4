@@ -1,19 +1,18 @@
 package roman;
 
 public class RomanToArabicNumberConverter {
-    private final String romanNumberString;
+    private String romanNumberString;
 
     public RomanToArabicNumberConverter(String romanNumberString) {
         this.romanNumberString = romanNumberString;
     }
 
     public int toArabic() {
-        if ("V".equals(romanNumberString)) {
-            return 5;
-        }
-        if ("IV".equals(romanNumberString)) {
-            return 4;
-        }
-        return romanNumberString.length() - romanNumberString.replaceAll("I", "").length();
+        int result = 0;
+        result += 4 * (romanNumberString.split("IV", -1).length - 1);
+        romanNumberString = romanNumberString.replaceAll("IV", "");
+        result += 5 * (romanNumberString.split("V", -1).length - 1);
+        result += (romanNumberString.split("I", -1).length - 1);
+        return result;
     }
 }
