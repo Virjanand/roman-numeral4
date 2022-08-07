@@ -9,8 +9,12 @@ public class RomanNumber implements Comparable<RomanNumber> {
         this.romanNumber = romanNumber;
     }
 
-    private int getArabicNumber() {
+    public int getArabicNumber() {
         return arabicNumber;
+    }
+
+    public String getRomanNumber() {
+        return romanNumber;
     }
 
     public int timesInNumber(int number) {
