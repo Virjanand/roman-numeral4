@@ -10,7 +10,16 @@ public class RomanToArabicNumberConverter {
     public RomanToArabicNumberConverter(String romanNumberString) {
         this.romanNumberString = romanNumberString;
         romanNumbers = new ArrayList<>();
+        romanNumbers.add(new RomanNumber(900, "CM"));
+        romanNumbers.add(new RomanNumber(1000, "M"));
+        romanNumbers.add(new RomanNumber(400, "CD"));
+        romanNumbers.add(new RomanNumber(500, "D"));
+        romanNumbers.add(new RomanNumber(90, "XC"));
+        romanNumbers.add(new RomanNumber(100, "C"));
+        romanNumbers.add(new RomanNumber(40, "XL"));
+        romanNumbers.add(new RomanNumber(50, "L"));
         romanNumbers.add(new RomanNumber(9, "IX"));
+        romanNumbers.add(new RomanNumber(10, "X"));
         romanNumbers.add(new RomanNumber(4, "IV"));
         romanNumbers.add(new RomanNumber(5, "V"));
         romanNumbers.add(new RomanNumber(1, "I"));
@@ -21,8 +30,12 @@ public class RomanToArabicNumberConverter {
     }
 
     private int countAmountFrom(String romanNumberPart, int arabicValue) {
-        int result = arabicValue * (romanNumberString.split(romanNumberPart, -1).length - 1);
+        int result = arabicValue * countOccurrences(romanNumberPart);
         romanNumberString = romanNumberString.replaceAll(romanNumberPart, "");
         return result;
+    }
+
+    private int countOccurrences(String romanNumberPart) {
+        return romanNumberString.split(romanNumberPart, -1).length - 1;
     }
 }
