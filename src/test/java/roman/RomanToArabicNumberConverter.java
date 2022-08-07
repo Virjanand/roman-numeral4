@@ -10,6 +10,7 @@ public class RomanToArabicNumberConverter {
     public RomanToArabicNumberConverter(String romanNumberString) {
         this.romanNumberString = romanNumberString;
         romanNumbers = new ArrayList<>();
+        romanNumbers.add(new RomanNumber(9, "IX"));
         romanNumbers.add(new RomanNumber(4, "IV"));
         romanNumbers.add(new RomanNumber(5, "V"));
         romanNumbers.add(new RomanNumber(1, "I"));
